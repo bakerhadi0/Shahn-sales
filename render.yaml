@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: shahn-sales-api
+    env: node
+    rootDir: server
+    plan: free
+    region: frankfurt
+    buildCommand: "npm install"
+    startCommand: "node src/index.js"
+    envVars:
+      - key: PORT
+        value: 4000
+      - key: MONGODB_URI
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+    healthCheckPath: /
+    autoDeploy: true
