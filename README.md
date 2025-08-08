@@ -1,38 +1,17 @@
-# Shahn Sales (MERN)
+# Shahn Sales — Server
 
-مشروع مبسّط يلبي متطلباتك:
-- واجهة دخول وتسجيل (JWT)
-- ربط بـ MongoDB
-- عمليات CRUD للمنتجات والمبيعات
-- واجهة أمامية جاهزة
-- تعليمات تشغيل سريعة
-- ملفات جاهزة للرفع على GitHub
-
-## المتطلبات
-- Node.js 18+
-- MongoDB (محلياً أو Atlas)
-
-## التشغيل
-### 1) API
+## Quick start
 ```bash
 cd server
-cp .env.example .env   # عدّل المتغيرات
+cp .env.example .env       # put your MongoDB URI + JWT secret
 npm install
-npm run dev           # http://localhost:4000
+npm run dev                # API at http://localhost:4000
 ```
 
-### 2) الواجهة
-```bash
-cd client
-npm install
-npm run dev           # http://localhost:5173
-```
-> أنشئ أول حساب من صفحة Register، سيصبح Admin تلقائياً.
+### API
+- `POST /api/auth/register {name,email,password}`
+- `POST /api/auth/login {email,password}`
 
-## الإنتاج
-- ضع `VITE_API_URL` في الواجهة للإشارة إلى رابط الـ API.
-- شغّل `npm run build` داخل client ثم قدّم مجلد `dist` عبر أي خادم ملفات.
-
-## ملاحظات
-- الجداول: Products, Sales.
-- يمكن إضافة حقول بسهولة من خلال النماذج في الواجهة أو من الـ Models في الخادم.
+Use `Authorization: Bearer <token>` for:
+- `GET/POST /api/products`
+- `GET/POST/PUT/DELETE /api/sales`
