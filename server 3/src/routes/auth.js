@@ -11,6 +11,7 @@ const sign = (user)=> jwt.sign(
   { expiresIn:'7d' }
 );
 
+// Register (أول مستخدم يصبح admin)
 router.post('/register', async (req,res,next)=>{
   try{
     const {name, email, password} = req.body;
@@ -24,6 +25,7 @@ router.post('/register', async (req,res,next)=>{
   }catch(e){ next(e); }
 });
 
+// Login
 router.post('/login', async (req,res,next)=>{
   try{
     const {email, password} = req.body;
