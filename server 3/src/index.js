@@ -24,10 +24,13 @@ mongoose.connect(MONGODB_URI).then(()=>{
 });
 
 app.get('/', (req,res)=>res.json({name:'Shahn Sales API', status:'ok'}));
+
 app.use('/api/auth', authRoutes);
+// حماية المنتجات والمبيعات بالتوكن
 app.use('/api/products', saleRoutes.guard, productRoutes);
 app.use('/api/sales', saleRoutes.guard, saleRoutes.router);
 
+// خطأ عام
 app.use((err, req, res, next)=>{
   console.error('Error:', err);
   res.status(err.status || 500).json({message: err.message || 'Server error'});
